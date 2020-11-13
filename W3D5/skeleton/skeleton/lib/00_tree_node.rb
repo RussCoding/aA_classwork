@@ -29,18 +29,13 @@ class PolyTreeNode
     end
 
     def dfs(target)
-        #debugger
         return self if self.value == target
-        #debugger
-        self.children.each do |child|
-                return child if child.value == target
-                child.dfs(target)
-            #debugger
+        self.children.each do |child| 
+            traversal = child.dfs(target)    
+            return traversal unless traversal.nil? 
         end 
-        #debugger
         nil   
     end 
-
 
     def bfs(target)
         queue = []
@@ -50,7 +45,7 @@ class PolyTreeNode
             if current.value == target
                 return current
             else
-                current.children.each {|child| queue << child}
+                queue += current.children
             end
         end
         nil
