@@ -36,9 +36,8 @@ class KnightPathFinder
         queue = [@root_node]
         until queue.empty? 
             current_position = queue.shift
-            queue += self.new_move_positions(current_position.value)
-            queue.map! {|pos| PolyTreeNode.new(pos) }
-            queue.each {|pos| pos.parent = current_position}
+            queue += self.new_move_positions(current_position.value).map {|ele| PolyTreeNode.new(pos)}
+            #queue.each {|pos| pos.parent = current_position}
         end 
     end
 
